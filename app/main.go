@@ -1,4 +1,5 @@
 /*Author Hussain Nagri
+
  */
 package main
 
@@ -12,19 +13,15 @@ import (
 )
 
 const logFile = "main.log"
+const port = "8080"
 
 var userCounter uint64 = 0
 
 type response struct {
 	UserAgent  string    `json:"user_agent"`
 	RemoteAddr string    `json:"remote_address"`
-	Date       time.Time `json:"time"`
+	Time       time.Time `json:"time"`
 	Counter    uint64    `json:"counter"`
-}
-
-func setUpHandler() {
-	http.HandleFunc("/", handler)
-	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
@@ -32,7 +29,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	atomic.AddUint64(&userCounter, 1)
 	var resp response
 	resp.UserAgent = r.UserAgent()
-	resp.Date = time.Now()
+	resp.Time = time.Now()
 	resp.RemoteAddr = r.RemoteAddr
 	resp.Counter = atomic.LoadUint64(&userCounter)
 	data, err := json.Marshal(&resp)
@@ -51,5 +48,6 @@ func main() {
 	defer file.Close()
 	log.SetOutput(file)
 	log.Print("Logging to a file in Go!")
-	setUpHandler()
+	http.HandleFunc("/", handler)
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }

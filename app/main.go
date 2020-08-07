@@ -5,6 +5,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -12,8 +13,7 @@ import (
 	"time"
 )
 
-const logFile = "main.log"
-const port = "8080"
+const defaultPort = "8080"
 
 var userCounter uint64 = 0
 
@@ -33,7 +33,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	resp.RemoteAddr = r.RemoteAddr
 	resp.Counter = atomic.LoadUint64(&userCounter)
 	data, err := json.Marshal(&resp)
-	log.Println(string(data))
+	fmt.Fprintln(os.Stderr, string(data))
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -41,13 +41,10 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	file, err := os.OpenFile(logFile, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
-	if err != nil {
-		log.Fatalln(err)
+	appPort := os.Getenv("APP_PORT")
+	if appPort == "" {
+		appPort = defaultPort
 	}
-	defer file.Close()
-	log.SetOutput(file)
-	log.Print("Logging to a file in Go!")
 	http.HandleFunc("/", handler)
-	log.Fatal(http.ListenAndServe(":"+port, nil))
+	log.Fatal(http.ListenAndServe(":"+appPort, nil))
 }

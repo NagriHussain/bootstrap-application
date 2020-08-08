@@ -1,4 +1,4 @@
-module github.com/NagriHussain/bootstrap-application/apiapp
+module apiapp
 
 go 1.14
 

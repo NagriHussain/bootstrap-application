@@ -1,4 +1,4 @@
-module github.com/NagriHussain/bootstrap-application/webapp
+module webapp
 
 go 1.14
 

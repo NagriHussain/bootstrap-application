@@ -12,7 +12,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/NagriHussain/application/utils"
+	"github.com/NagriHussain/bootstrap-application/utils"
 )
 
 const defaultPort = "8080"

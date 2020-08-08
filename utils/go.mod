@@ -1,3 +1,3 @@
-module github.com/NagriHussain/application/utils
+module github.com/NagriHussain/bootstrap-application/utils
 
 go 1.14

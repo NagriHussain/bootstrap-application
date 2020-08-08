@@ -10,7 +10,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/NagriHussain/application/utils"
+	"github.com/NagriHussain/bootstrap-application/utils"
 )
 
 type publicAPI struct {

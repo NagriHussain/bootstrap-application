@@ -1,6 +1,7 @@
 FROM golang:1.14
 WORKDIR /go/src
 COPY apiapp .
+COPY utils .
 RUN go build .
 RUN cp apiapp /opt
 RUN chmod +x /opt/apiapp

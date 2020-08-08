@@ -1,9 +1,12 @@
 node {
     checkout scm
     docker.withRegistry('', 'dockerRegistryCredentials'){
-    def dockerfile = 'build/app-Dockerfile/Dockerfile'
-    def appImage = docker.build("nagrihussain/bootstrap-application:${env.BUILD_ID}",  "-f ${dockerfile} .")
+    def webapp_dockerfile = 'build/webapp-Dockerfile/Dockerfile'
+    def webAppImage = docker.build("nagrihussain/bootstrap-application:${env.BUILD_ID}",  "-f ${webapp_dockerfile} .")
+    webAppImage.push()
 
-    appImage.push()
+    def apiapp_dockerfile = 'build/webapp-Dockerfile/Dockerfile'
+    def APIAppImage = docker.build("nagrihussain/bootstrap-application:${env.BUILD_ID}",  "-f ${apiapp_dockerfile} .")
+    APIAppImage.push()
     }
 }

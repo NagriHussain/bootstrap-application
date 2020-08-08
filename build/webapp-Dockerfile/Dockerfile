@@ -5,6 +5,6 @@ COPY utils /go/src/utils
 WORKDIR /go/src/webapp
 RUN go build .
 RUN cp webapp /opt
-RUN chmod +x /opt/app
+RUN chmod +x /opt/webapp
 RUN rm -rf /go/src
-ENTRYPOINT ["/opt/app"]
+ENTRYPOINT ["/opt/webapp"]

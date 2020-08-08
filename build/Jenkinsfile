@@ -4,9 +4,11 @@ node {
     def webapp_dockerfile = 'build/webapp-Dockerfile/Dockerfile'
     def webAppImage = docker.build("nagrihussain/bootstrap-application-webapp:${env.BUILD_ID}",  "-f ${webapp_dockerfile} .")
     webAppImage.push()
+    webAppImage.push 'latest'
 
     def apiapp_dockerfile = 'build/webapp-Dockerfile/Dockerfile'
     def APIAppImage = docker.build("nagrihussain/bootstrap-application-apiapp:${env.BUILD_ID}",  "-f ${apiapp_dockerfile} .")
     APIAppImage.push()
+    APIAppImage.push 'latest'
     }
 }

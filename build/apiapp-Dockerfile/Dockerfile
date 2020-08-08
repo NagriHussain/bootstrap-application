@@ -1,7 +1,7 @@
 FROM golang:1.14
 WORKDIR /go/src
-ADD apiapp /go/src
-ADD utils /go/src
+COPY apiapp /go/src/apiapp
+COPY utils /go/src/utils
 WORKDIR /go/src/apiapp
 RUN go build .
 RUN cp apiapp /opt

@@ -1,7 +1,8 @@
 FROM golang:1.14
 WORKDIR /go/src
-ADD webapp .
-ADD utils .
+ADD webapp /go/src
+ADD utils /go/src
+WORKDIR /go/src/webapp
 RUN go build .
 RUN cp webapp /opt
 RUN chmod +x /opt/app

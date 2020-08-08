@@ -1,7 +1,8 @@
 FROM golang:1.14
 WORKDIR /go/src
-ADD apiapp .
-ADD utils .
+ADD apiapp /go/src
+ADD utils /go/src
+WORKDIR /go/src/apiapp
 RUN go build .
 RUN cp apiapp /opt
 RUN chmod +x /opt/apiapp

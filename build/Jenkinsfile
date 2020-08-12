@@ -7,7 +7,7 @@ node {
     // You can do tesing here and then push latest
     webAppImage.push 'latest'
 
-    def apiapp_dockerfile = 'build/webapp-Dockerfile/Dockerfile'
+    def apiapp_dockerfile = 'build/apiapp-Dockerfile/Dockerfile'
     def APIAppImage = docker.build("nagrihussain/bootstrap-application-apiapp:${env.BUILD_ID}",  "-f ${apiapp_dockerfile} .")
     APIAppImage.push()
     // You can do tesing here and then push latest

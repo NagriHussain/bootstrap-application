@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: apiapp
+spec:
+  replicas: 3
+  selector:
+    app: apiapp
+  template:
+    metadata:
+      name: apiapp
+      labels:
+        app: apiapp
+    spec:
+      containers:
+      - name: apiapp
+        image: nagrihussain/bootstrap-application-apiapp:latest
+        ports:
+        - containerPort: 9090

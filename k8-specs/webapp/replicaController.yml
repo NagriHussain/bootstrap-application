@@ -17,3 +17,6 @@ spec:
         image: nagrihussain/bootstrap-application-webapp:latest
         ports:
         - containerPort: 8080
+        env:
+        - name: APIAPP_ENDPOINT
+          value: "http://localhost:9090"

@@ -55,7 +55,7 @@ func main() {
 	if webAppPort == "" {
 		webAppPort = defaultPort
 	}
-	aPIAppEndpoint = os.Getenv("API_APP_ENDPOINT")
+	aPIAppEndpoint = os.Getenv("APIAPP_ENDPOINT")
 	if aPIAppEndpoint == "" {
 		fmt.Fprintln(os.Stderr, utils.Now()+" No API_APP_ENDPOINT found, make sure API_APP_ENDPOINT Environment variable is set.\n"+
 			"Something like 'http://localhost:9090'\nTerminating process.")

@@ -1,8 +1,10 @@
 package utils
 
 import (
+	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"time"
 )
 
@@ -15,13 +17,12 @@ func Now() string {
 func HTTPGETCall(u string) []byte {
 	resp, err := http.Get(u)
 	if err != nil {
-		print(err)
+		fmt.Fprintln(os.Stderr, err)
 	}
-
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		print(err)
+		fmt.Fprintln(os.Stderr, err)
 	}
 	return body
 }

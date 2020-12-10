@@ -19,4 +19,4 @@ spec:
         - containerPort: 8080
         env:
         - name: APIAPP_ENDPOINT
-          value: "apiapp-service:9090"
+          value: "http://apiapp-service:9090"
